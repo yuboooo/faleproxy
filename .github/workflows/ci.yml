@@ -38,7 +38,7 @@ jobs:
   deploy-production:
     name: Deploy to Production
     needs: test
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') && success()
     runs-on: ubuntu-latest
 
     steps:
@@ -73,7 +73,7 @@ jobs:
   deploy-preview:
     name: Deploy to Preview
     needs: test
-    if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master'
+    if: (github.ref != 'refs/heads/main' && github.ref != 'refs/heads/master') && success()
     runs-on: ubuntu-latest
 
     steps:
